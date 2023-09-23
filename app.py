@@ -2,7 +2,6 @@ import re
 import boto3
 import os
 from pymysql import connections
-from config import *
 from flask import Flask, redirect, url_for, request, render_template, session
 
 from datetime import datetime
