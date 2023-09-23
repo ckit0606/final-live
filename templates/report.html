@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{%  block title %}
+Contact us
+{% endblock %}
+{% block content %}
+        <!-- Header End -->
+        <div class="container-xxl py-5 bg-dark page-header mb-5">
+          <div class="container my-5 pt-5 pb-4">
+              <h1 class="display-3 text-white mb-3 animated slideInDown">Profile</h1>
+              <nav aria-label="breadcrumb">
+                  <ol class="breadcrumb text-uppercase">
+                      <li class="breadcrumb-item"><a href="#">Profile</a></li>
+                      <li class="breadcrumb-item text-white active" aria-current="page">Upload Report</li>
+                  </ol>
+              </nav>
+          </div>
+      </div>
+      <!-- Header End -->
+      
+<div class="wrapper">
+    <header>Report Upload</header>
+    <form action="#">
+      <input class="file-input" type="file" name="file" hidden>
+      <i class="fas fa-cloud-upload-alt"></i>
+      <p>Browse File to Upload</p>
+    </form>
+    <div class="col-12">
+      <button class="btn btn-primary w-100" type="submit" name="submit"
+          value="submit">Submit</button>
+    </div>
+    <section class="progress-area"></section>
+    <section class="uploaded-area"></section>
+  </div>
+
+{% endblock %}
