@@ -33,7 +33,6 @@ def profile():
 def edit():
     resume_url = ''
     report_url = ''
-    cursor = db_conn.cursor()
 
     if request.method == 'POST':
         studentName = request.form.get("studentName")
@@ -76,22 +75,21 @@ def edit():
                 bucket,
                 pdf_file_name_in_s3)
 
+        cursor = db_conn.cursor()
         update_sql = 'UPDATE student SET StudentName = %s, StudentGender = %s, StudentProgramme = %s, StudentState = %s,StudentPhoneNumber = %s,StudentYear = %s,StudentMethod = %s,StudentResume = %s,StudentReport = %s WHERE StudentID = 1'
         cursor.execute(update_sql, (studentName,gender,programme,state,contact,studyYear,method,resume_url,report_url))
+        db_conn.commit()
+        cursor.close()
+            
+        cursor = db_conn.cursor()
+        insert_sql = "INSERT INTO resume (StudentID,ResumeLink,ResumeStatus) VALUES (1, %s, 'Pending')"
+        cursor.execute(insert_sql, (resume_url))
         db_conn.commit()
         cursor.close()
 
         return redirect(url_for("profile"))
 
     return render_template("edit.html")
-
-@app.route("/resume/")
-def resume():
-    return render_template("resume.html")
-
-@app.route("/report/")
-def report():
-    return render_template("report.html")
 
 @app.route("/layout/")
 def layout():
