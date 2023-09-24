@@ -31,6 +31,8 @@ def profile():
 
 @app.route("/edit", methods=['GET', 'POST'])
 def edit():
+    resume_url = ''
+    report_url = ''
     cursor = db_conn.cursor()
 
     if request.method == 'POST':
@@ -131,5 +133,3 @@ def jobDetail(jobID=None):
     return render_template("jobDetail.html",jobData=jobData)
 
 
-if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=80, debug=True)
